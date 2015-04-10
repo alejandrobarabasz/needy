@@ -14,10 +14,7 @@ class SupportCenterController extends Controller {
 	 */
 	public function index()
 	{
-		//
-		//echo __CLASS__.' index';
-		
-		return view('support-center.index', array());
+		return view('support-center.index');
 	}
 
 	/**
@@ -27,8 +24,7 @@ class SupportCenterController extends Controller {
 	 */
 	public function create()
 	{
-		//
-		echo __CLASS__.' create';
+		return view('support-center.create');
 	}
 
 	/**
@@ -50,8 +46,7 @@ class SupportCenterController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
-		echo __CLASS__.' show';
+		return view('support-center.show');
 	}
 
 	/**
@@ -62,8 +57,7 @@ class SupportCenterController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
-		echo __CLASS__.' edit';
+		return view('support-center.edit');
 	}
 
 	/**
