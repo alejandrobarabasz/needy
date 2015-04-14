@@ -5,16 +5,25 @@ use NeedFinder\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
+use NeedFinder\Account;
+
 class SupportCenterController extends Controller {
 
+	// Maximum number of elements by page
+	public static $pageLimit = 20;
+
+
 	/**
-	 * Display a listing of the resource.
+	 * Display a listing of SupportCenters.
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-		return view('support-center.index');
+		$current_account = Account::current();
+		$support_centers = $current_account->supportCenters()->paginate(static::$pageLimit);
+		
+		return view('support-center.index', compact('support_centers'));
 	}
 
 	/**
@@ -46,7 +55,10 @@ class SupportCenterController extends Controller {
 	 */
 	public function show($id)
 	{
-		return view('support-center.show');
+		$current_account = Account::current();
+		$support_center = $current_account->supportCenters()->find($id);
+		
+		return view('support-center.show', compact('support_center'));
 	}
 
 	/**
