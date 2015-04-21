@@ -13,14 +13,6 @@ abstract class BaseModel extends Model {
 
 
 	/**
-	 * Error Messages for model store validation
-	 * 
-	 * @var array $store_validation_errors
-	 */
-	public static $store_validation_errors = array();
-
-
-	/**
 	 * Validation rules for model update
 	 * 
 	 * @var array $update_validation_rules
@@ -29,11 +21,11 @@ abstract class BaseModel extends Model {
 
 
 	/**
-	 * Error Messages for model update validation
+	 * Error Messages for model validations
 	 * 
-	 * @var array $update_validation_errors
+	 * @var array $validation_errors
 	 */
-	public static $update_validation_errors = array();
+	public static $validation_errors = array();
 
 
 	/**
@@ -62,8 +54,8 @@ abstract class BaseModel extends Model {
 	 */
 	public function validateStore($data, $extra_rules = null, $extra_errors = null) {
 		// Add or overwrite store rules and error messages
-		$rules = array_merge(static::$store_validation_rules, (array) $extra_rules); 
-		$errors = array_merge(static::$store_validation_rules, (array) $extra_rules);
+		$rules = array_merge_recursive(static::$store_validation_rules, (array) $extra_rules); 
+		$errors = array_merge_recursive(static::$validation_errors, (array) $extra_errors);
 
 		// Execute validation
 		return static::validate($data, $rules, $errors);
@@ -81,8 +73,8 @@ abstract class BaseModel extends Model {
 	 */
 	public function validateUpdate($data, $extra_rules = null, $extra_errors = null) {
 		// Add or overwrite update rules and error messages
-		$rules = array_merge(static::$update_validation_rules, (array) $extra_rules); 
-		$errors = array_merge(static::$update_validation_rules, (array) $extra_rules);
+		$rules = array_merge_recursive(static::$update_validation_rules, (array) $extra_rules); 
+		$errors = array_merge_recursive(static::$validation_errors, (array) $extra_errors);
 
 		// Execute validation
 		return static::validate($data, $rules, $errors);

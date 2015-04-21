@@ -10,14 +10,11 @@ class Account extends BaseModel {
 	// Validation rules for model store
 	public static $store_validation_rules = array();
 
-	// Error Messages for model store validation
-	public static $store_validation_errors = array();
-
 	// Validation rules for model update
 	public static $update_validation_rules = array();
 	
-	// Error Messages for model update validation
-	public static $update_validation_errors = array();
+	// Error Messages for model validation
+	public static $validation_errors = array();
 
 
 	/**
