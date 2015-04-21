@@ -102,6 +102,17 @@ class SupportCenterController extends Controller {
 		// Get input for the request
 		$input = Request::all();
 		
+		$account = Account::current();
+		
+		// Validate if support center exists
+		$support_center = $account->supportCenters()->find($id);
+		
+		if (!$support_center) {
+			return redirect()
+				->route('support-center.index')
+				->withMessage('error_message', Lang::get('messages.support_center_not_found'));
+		}
+		
 		// Validate input
 		$validation = SupportCenter::validateUpdate($input);
 		
@@ -112,15 +123,6 @@ class SupportCenterController extends Controller {
 				->withInput()
 				->withErrors($validation)
 				->withMessage('error_message', Lang::get('global.form_contains_errors'));
-		}
-		
-		$account = Account::current();
-		$support_center = $account->supportCenters()->find($id);
-		
-		if (!$support_center) {
-			return redirect()
-				->route('support-center.index')
-				->withMessage('error_message', Lang::get('messages.support_center_not_found'));
 		}
 		
 		$support_center->update($input);
