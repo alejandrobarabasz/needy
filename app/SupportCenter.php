@@ -1,8 +1,8 @@
 <?php namespace NeedFinder;
 
-use NeedFinder\BaseModel;
+use NeedFinder\Model;
 
-class SupportCenter extends BaseModel {
+class SupportCenter extends Model {
 
 	// Database table
 	protected $table = 'support_centers';
@@ -40,11 +40,12 @@ class SupportCenter extends BaseModel {
 	
 	// Error Messages for model validations
 	public static $validation_errors = array(
-//		'name.required' => '',
-//		'name.string' => '',
-//		'active.required' => '',
-//		'active.boolean' => '',
-//		'picture.url' => '',
+		'name.required' => 'messages.support_center_name_required',
+		'name.string' => 'messages.support_center_name_invalid',
+		'name.unique' => 'messages.support_center_name_already_exists',
+		'active.required' => 'messages.support_center_active_required',
+		'active.boolean' => 'messages.support_center_active_invalid',
+		'picture.url' => 'messages.support_center_picture_invalid_url',
 //		'location.required' => '',
 //		'location.array' => '',
 	);
@@ -71,13 +72,9 @@ class SupportCenter extends BaseModel {
 		$rules = array_merge_recursive(array(
 			'name' => array( 'unique:'.self::$table.',name,id,NULL,account_id,'.$account->id ),
 		), (array) $extra_rules);
-		
-		$errors = array_merge_recursive(array(
-			'name:unique' => array( 'messages.support_center_name_already_exists' ),
-		), (array) $extra_errors);
 
 		// Execute validation
-		return parent::validateStore($data, $rules, $errors);
+		return parent::validateStore($data, $rules, $extra_errors);
 	}
 	
 	/**
@@ -87,19 +84,13 @@ class SupportCenter extends BaseModel {
 	 */
 	public function validateUpdate($data, $extra_rules = null, $extra_errors = null) {
 		
-		$account = Account::current();
-		
 		// Add extra rules and error messages
 		$rules = array_merge_recursive(array(
-			'name' => 'unique:'.self::$table.',name,id,'.$id.',account_id,'.$account->id,
+			'name' => 'unique:'.self::$table.',name,id,'.$this->id.',account_id,'.$this->account_id,
 		), (array) $extra_rules);
-		
-		$errors = array_merge_recursive(array(
-			'name:unique' => 'messages.support_center_name_already_exists',
-		), (array) $extra_errors);
 
 		// Execute validation
-		return parent::validateStore($data, $rules, $errors);
+		return parent::validateStore($data, $rules, $extra_errors);
 	}
 
 }

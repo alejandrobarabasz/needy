@@ -1,8 +1,8 @@
 <?php namespace NeedFinder;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model as BaseModel;
 
-abstract class BaseModel extends Model {
+abstract class Model extends BaseModel {
 
 	/**
 	 * Validation rules for model store
