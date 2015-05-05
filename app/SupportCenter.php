@@ -15,7 +15,7 @@ class SupportCenter extends Model {
 		'name' => ['required', 'string:255'],
 		'active' => ['required', 'boolean'],
 		'picture' => ['url'],
-		'location' => ['required', 'array'], // json
+		'location' => ['required', 'string:255'], // json
 		'address' => ['required', 'string:512'],
 		'business_hours' => ['array'], // json
 		'phones' => ['array'], // json
@@ -29,7 +29,7 @@ class SupportCenter extends Model {
 		'name' => ['string:255'],
 		'active' => ['boolean'],
 		'picture' => ['url'],
-		'location' => ['array'], // json
+		'location' => ['string:255'], // json
 		'address' => ['string:512'],
 		'business_hours' => ['array'], // json
 		'phones' => ['array'], // json
@@ -60,37 +60,35 @@ class SupportCenter extends Model {
 
 
 	/**
-	 * Executes store validation rules for this model on the specified data
+	 * Executes store validation rules for this model
 	 * 
-	 * @return Validator
+	 * @return boolean
 	 */
-	public function validateStore($data, $extra_rules = null, $extra_errors = null) {
-		
-		$account = Account::current();
-		
+	public function validateStore($extra_rules = null, $extra_errors = null) {
+
 		// Add extra rules and error messages
 		$rules = array_merge_recursive(array(
-			'name' => array( 'unique:'.self::$table.',name,id,NULL,account_id,'.$account->id ),
+			'name' => array( 'unique:'.$this->table.',name,NULL,id,account_id,'.$this->account_id ),
 		), (array) $extra_rules);
 
 		// Execute validation
-		return parent::validateStore($data, $rules, $extra_errors);
+		return parent::validateStore($rules, $extra_errors);
 	}
 	
 	/**
-	 * Executes update validation rules for this model on the specified data
+	 * Executes update validation rules for this model
 	 * 
-	 * @return Validator
+	 * @return boolean
 	 */
-	public function validateUpdate($data, $extra_rules = null, $extra_errors = null) {
+	public function validateUpdate($extra_rules = null, $extra_errors = null) {
 		
 		// Add extra rules and error messages
 		$rules = array_merge_recursive(array(
-			'name' => 'unique:'.self::$table.',name,id,'.$this->id.',account_id,'.$this->account_id,
+			'name' => 'unique:'.$this->table.',name,'.$this->id.',id,account_id,'.$this->account_id,
 		), (array) $extra_rules);
 
 		// Execute validation
-		return parent::validateStore($data, $rules, $extra_errors);
+		return parent::validateUpdate($rules, $extra_errors);
 	}
 
 }
