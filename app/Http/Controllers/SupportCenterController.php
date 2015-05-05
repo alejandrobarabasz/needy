@@ -153,5 +153,4 @@ class SupportCenterController extends Controller {
 			->route('support-center.index')
 			->withMessage('success_message', Lang::get('messages.support_center_deleted_successfully'));
 	}
-
 }

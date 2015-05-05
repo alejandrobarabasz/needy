@@ -2,10 +2,9 @@
 
 @section('content')
 
-<!-- <pre>$support_centers = {{ print_r($support_centers, true) }}</pre> -->
 <div class="list">
 
-	<div class="top">
+	<div class="top radius-5">
 
 		<div class="searcher">
 			<form class="navbar-form navbar-left" role="search">
@@ -17,72 +16,89 @@
 		</div>
 
 		<div class="controls navbar-form navbar-left">
-			<div class="form-group">
-				<button type="submit" class="btn btn-default">+</button>
+			<div class="btn-group">
+				<button type="button" class="btn btn-default" aria-label="Left Align"><span aria-hidden="true">Agregar</span></button>
+				<button type="button" class="btn btn-default" aria-label="Center Align"><span aria-hidden="true">Eliminar</span></button>
+				<button type="button" class="btn btn-default" aria-label="Center Align"><span aria-hidden="true">Archivar</span></button>
 			</div>
 		</div>
+
+		<div class="controls navbar-form navbar-right">
+			<div class="btn-group">
+				<button type="button" class="btn btn-default" aria-label="Left Align"><span aria-hidden="true">|&#x297C;</span></button>
+				<button type="button" class="btn btn-default" aria-label="Center Align"><span aria-hidden="true">&#x2190;</span></button>
+				<button type="button" class="btn btn-default" aria-label="Right Align"><span aria-hidden="true">&#x2192;</span></button>
+				<button type="button" class="btn btn-default" aria-label="Justify"><span aria-hidden="true">&#x297D;|</span></button>
+			</div>
+			</div>
 
 		<br class="cb" />
 	</div>
 
 	<div class='items'>
+
 		<!-- panel 1 -->
-		<div class="panel panel-default">
-			<span class="radius-5 chk">
-				<input type="checkbox" aria-label="">
-			</span>
-			<div class="panel-body">
-				<img src="/img/c-a.jpg" />
-				<div class="extra">
-					<h2>Nombre del centro técnico 1</h2>
-					<label class="left">Campo 1 corto</label>
-					<label class="right">Campo 2 de longitud mediana</label>
-					<label class="left">Campo c</label>
-					<label class="right">Campo 4 </label>
-					<label class="left">Campo 5 que se consideraría como bastante largo</label>
-					<br class="cb" />
+		<div class='radius-5 row'>
+			<div class="col-sm-2 col-md-2 col-lg-2">
+				<span class="radius-5 chk">
+					<input type="checkbox" aria-label="">
+				</span>
+				<img class="img-responsive center-block img-thumbnail" src="/img/c-a.jpg" />
+			</div>
+			<div class="col-sm-10 col-md-10 col-lg-10">
+				<div class='controls'>
+					<span class='radius-5 edit'></span>
+					<span class='radius-5 remove'></span>
+				</div>
+				<h2>Nombre del centro técnico 1</h2>
+				<div class="row">
+					<label class="col-sm-12 col-md-12 col-lg-12">Domicilio centro 1</label>
+					<label class="col-sm-6 col-md-6 col-lg-6">Horario de atención centro 1</label>
+					<label class="col-sm-6 col-md-6 col-lg-6">corre@centro1.com</label>
 				</div>
 			</div>
 		</div>
 
 		<!-- panel 2 -->
-		<div class="panel panel-default">
-			<span class="radius-5 chk">
-				<input type="checkbox" aria-label="">
-			</span>
-			<div class="panel-body">
-				<img src="/img/c-a.jpg" />
-				<div class="extra">
-					<h2>Nombre del centro técnico 2</h2>
-					<label class="left">Campo 1 corto</label>
-					<label class="right">Campo 2 de longitud mediana</label>
-					<label class="left">Campo c</label>
-					<label class="right">Campo 4 </label>
-					<label class="left">Campo 5 que se consideraría como bastante largo</label>
-					<label class="right">Campo 4</label>
-					<label class="left">Campo 5 mas o menos</label>
-					<br class="cb" />
+		<div class='radius-5 row'>
+			<div class="col-sm-2 col-md-2 col-lg-2">
+				<span class="radius-5 chk">
+					<input type="checkbox" aria-label="">
+				</span>
+				<img class="img-responsive center-block img-thumbnail" src="/img/c-a.jpg" />
+			</div>
+			<div class="col-sm-10 col-md-10 col-lg-10">
+				<div class='controls'>
+					<span class='radius-5 edit'></span>
+					<span class='radius-5 remove'></span>
+				</div>
+				<h2>Nombre del centro técnico 2</h2>
+				<div class="row">
+					<label class="col-sm-12 col-md-12 col-lg-12">Domicilio centro 2</label>
+					<label class="col-sm-6 col-md-6 col-lg-6">Horario de atención centro 2</label>
+					<label class="col-sm-6 col-md-6 col-lg-6">corre@centro2.com</label>
 				</div>
 			</div>
 		</div>
 
 		<!-- panel 3 -->
-		<div class="panel panel-default">
-			<span class="radius-5 chk">
-				<input type="checkbox" aria-label="">
-			</span>
-			<div class="panel-body">
-				<img src="/img/c-a.jpg" />
-				<div class="extra">
-					<h2>Nombre del centro técnico 3</h2>
-					<label class="left">Campo 1 corto</label>
-					<label class="right">Campo 2 de longitud mediana</label>
-					<label class="left">Campo c</label>
-					<label class="right">Campo 4 </label>
-					<label class="left">Campo 5 que se consideraría como bastante largo</label>
-					<label class="right">Campo 4</label>
-					<label class="left">Campo 5 mas o menos</label>
-					<br class="cb" />
+		<div class='radius-5 row'>
+			<div class="col-sm-2 col-md-2 col-lg-2">
+				<span class="radius-5 chk">
+					<input type="checkbox" aria-label="">
+				</span>
+				<img class="img-responsive center-block img-thumbnail" src="/img/c-a.jpg" />
+			</div>
+			<div class="col-sm-10 col-md-10 col-lg-10">
+				<div class='controls'>
+					<span class='radius-5 edit'></span>
+					<span class='radius-5 remove'></span>
+				</div>
+				<h2>Nombre del centro técnico 3</h2>
+				<div class="row">
+					<label class="col-sm-12 col-md-12 col-lg-12">Domicilio centro 3</label>
+					<label class="col-sm-6 col-md-6 col-lg-6">Horario de atención centro 3	</label>
+					<label class="col-sm-6 col-md-6 col-lg-6">corre@centro3.com</label>
 				</div>
 			</div>
 		</div>

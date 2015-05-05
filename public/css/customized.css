@@ -11,85 +11,73 @@
 
 .list {
 	margin: 0 auto;
-	width: 900px;
 	padding: 10px;
+	margin: 0 50px;
+	/*border: solid 1px red;*/
 }
 
-	.list .top {
-		clear: both;
-	}
 
-		.list .top .searcher {
-			display: inline-block;
-			float: left;
-		}
-
-		.list .top .controls {
-			float: left;
-		}
-
-
-.list .items {
-	/*border: solid 1px violet;*/
+.list .row {
+	border: solid 1px #F8F8F8;
+	margin: 25px auto;
 }
 
-	.list .items .panel-default {
-		margin: 10px 0;
+	.list .row .row {
+		border: none;
 	}
 
-		.list .items .panel-default .chk {
-			/*float: left;*/
-			margin: 0;
+	.list .row .controls {
+		float: right;
+		margin: 0;
+	}
+
+		.list .top{
+			padding: 5px 0;
+			background: #F8F8F8;
+			border: solid 1px #E7E7E7;
+		}
+
+			.list .top .controls.navbar-right {
+				margin-right:  0;
+			} 
+
+		.list .row .controls span {
+			margin-top: -15px;
+			background: #F8F8F8;
 			display: inline-block;
-			padding: 1px 5px;
-			background: #e9e9e9;
-			float: left;
-			margin-top: 10px;
-			/*position: relative;*/
-			margin-left: -10px;
+			margin-left: 10px;
+			height: 32px;
+			width: 32px;
 		}
 
-		.list .items .panel-default .panel-body {
-			padding: 10px 15px;
-			margin-left: 15px;
+		.list .row .controls span:hover {
+			cursor: pointer;
+			background: #E7E7E7;
 		}
 
-
-		.list .items .panel-default .panel-body .extra {
-			width: 80%;
-			float: right;
+		.list .row .controls span:active {
+			background: #efefef;
 		}
 
-		.list .items .panel-default .panel-body img {
-			float: left;
-			width: 150px;
-			height: 150px;
-			border: solid 0px #e9e9e9;
-		}
+	.list .row img {
+		margin: 10px auto;
+		min-height: 150px;
+		border: solid 1px #e9e9e9;
+	}
 
-		.list .items .panel-default .panel-body h2 {
-			margin-top: 0;
-			padding: 0;
+	.list .row .chk {
+		display: inline-block;
+		padding: 1px 5px;
+		background: #E7E7E7;
+		float: left;
+		margin-top: 10px;
+		margin-left: -27px;
+	}
 
-		}
-
-		.list .items .panel-default .panel-body label {
-			width: 50%;
-			font-size: 15px;
-			line-height: : 20px;
-			padding: 5px;
-		}
-
-			.list .items .panel-default .panel-body label.left {
-				float: left;
-			}
-
-			
-			.list .items .panel-default .panel-body label.right {
-				float: right;
-			}
-
-
+	.list .row label {
+		padding: 5px;
+		/*border-bottom: solid 1px #e9e9e9;*/
+	}
 
 
 

@@ -101,5 +101,4 @@ class SupportCenter extends BaseModel {
 		// Execute validation
 		return parent::validateStore($data, $rules, $errors);
 	}
-
 }
