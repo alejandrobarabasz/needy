@@ -8,6 +8,9 @@
 
 	<link href="/css/app.css" rel="stylesheet">
 	<link href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet">
+	<link href="//cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.2.17/jquery.timepicker.min.css" rel="stylesheet">
+	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
+	<link href="/vendor/jquery.businessHours/jquery.businessHours.css" rel="stylesheet">
 	<link href="/css/customized.css" rel="stylesheet">
 
 	<!-- Fonts -->
@@ -55,12 +58,18 @@
 		</div>
 	</nav>
 
-	@yield('content')
+	<div class="container-fluid">
+		@yield('content')
+	</div>
 
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.2.17/jquery.timepicker.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
+	<script src="/vendor/jquery.businessHours/jquery.businessHours.js"></script>
+	<script src="/js/app.js"></script>
 
 </body>
 </html>
