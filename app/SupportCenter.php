@@ -1,8 +1,8 @@
 <?php namespace NeedFinder;
 
-use NeedFinder\BaseModel;
+use NeedFinder\Model;
 
-class SupportCenter extends BaseModel {
+class SupportCenter extends Model {
 
 	// Database table
 	protected $table = 'support_centers';
@@ -15,7 +15,7 @@ class SupportCenter extends BaseModel {
 		'name' => ['required', 'string:255'],
 		'active' => ['required', 'boolean'],
 		'picture' => ['url'],
-		'location' => ['required', 'array'], // json
+		'location' => ['required', 'string:255'], // json
 		'address' => ['required', 'string:512'],
 		'business_hours' => ['array'], // json
 		'phones' => ['array'], // json
@@ -29,7 +29,7 @@ class SupportCenter extends BaseModel {
 		'name' => ['string:255'],
 		'active' => ['boolean'],
 		'picture' => ['url'],
-		'location' => ['array'], // json
+		'location' => ['string:255'], // json
 		'address' => ['string:512'],
 		'business_hours' => ['array'], // json
 		'phones' => ['array'], // json
@@ -40,11 +40,12 @@ class SupportCenter extends BaseModel {
 	
 	// Error Messages for model validations
 	public static $validation_errors = array(
-//		'name.required' => '',
-//		'name.string' => '',
-//		'active.required' => '',
-//		'active.boolean' => '',
-//		'picture.url' => '',
+		'name.required' => 'messages.support_center_name_required',
+		'name.string' => 'messages.support_center_name_invalid',
+		'name.unique' => 'messages.support_center_name_already_exists',
+		'active.required' => 'messages.support_center_active_required',
+		'active.boolean' => 'messages.support_center_active_invalid',
+		'picture.url' => 'messages.support_center_picture_invalid_url',
 //		'location.required' => '',
 //		'location.array' => '',
 	);
@@ -59,46 +60,34 @@ class SupportCenter extends BaseModel {
 
 
 	/**
-	 * Executes store validation rules for this model on the specified data
+	 * Executes store validation rules for this model
 	 * 
-	 * @return Validator
+	 * @return boolean
 	 */
-	public function validateStore($data, $extra_rules = null, $extra_errors = null) {
-		
-		$account = Account::current();
-		
+	public function validateStore($extra_rules = null, $extra_errors = null) {
+
 		// Add extra rules and error messages
 		$rules = array_merge_recursive(array(
-			'name' => array( 'unique:'.self::$table.',name,id,NULL,account_id,'.$account->id ),
+			'name' => array( 'unique:'.$this->table.',name,NULL,id,account_id,'.$this->account_id ),
 		), (array) $extra_rules);
-		
-		$errors = array_merge_recursive(array(
-			'name:unique' => array( 'messages.support_center_name_already_exists' ),
-		), (array) $extra_errors);
 
 		// Execute validation
-		return parent::validateStore($data, $rules, $errors);
+		return parent::validateStore($rules, $extra_errors);
 	}
 	
 	/**
-	 * Executes update validation rules for this model on the specified data
+	 * Executes update validation rules for this model
 	 * 
-	 * @return Validator
+	 * @return boolean
 	 */
-	public function validateUpdate($data, $extra_rules = null, $extra_errors = null) {
-		
-		$account = Account::current();
+	public function validateUpdate($extra_rules = null, $extra_errors = null) {
 		
 		// Add extra rules and error messages
 		$rules = array_merge_recursive(array(
-			'name' => 'unique:'.self::$table.',name,id,'.$id.',account_id,'.$account->id,
+			'name' => 'unique:'.$this->table.',name,'.$this->id.',id,account_id,'.$this->account_id,
 		), (array) $extra_rules);
-		
-		$errors = array_merge_recursive(array(
-			'name:unique' => 'messages.support_center_name_already_exists',
-		), (array) $extra_errors);
 
 		// Execute validation
-		return parent::validateStore($data, $rules, $errors);
+		return parent::validateUpdate($rules, $extra_errors);
 	}
 }

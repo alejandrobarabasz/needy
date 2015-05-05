@@ -1,8 +1,8 @@
 <?php namespace NeedFinder;
 
-use NeedFinder\BaseModel;
+use NeedFinder\Model;
 
-class Account extends BaseModel {
+class Account extends Model {
 
 	// Database table
 	protected $table = 'accounts';
