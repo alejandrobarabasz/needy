@@ -3,9 +3,10 @@
 use NeedFinder\Http\Requests;
 use NeedFinder\Http\Controllers\Controller;
 
-use Illuminate\Http\Request;
-
 use NeedFinder\Account;
+use NeedFinder\SupportCenter;
+
+use Request, Lang;
 
 class SupportCenterController extends Controller {
 
@@ -43,23 +44,24 @@ class SupportCenterController extends Controller {
 	 */
 	public function store()
 	{
-		// Get input for the request
+		$account = Account::current();
+		
+		// Get request input
 		$input = Request::all();
 		
-		// Validate input
-		$validation = SupportCenter::validateStore($input);
+		// create new support center
+		$new_support_center = $account->supportCenters()->create($input);
 		
-		if ($validation->fails()) {
-			// Redirect to create form with input values and errors
+		// If fails then redirect to create form with input values and errors
+		if ($new_support_center->hasErrors()) {
+			echo '<pre>validation->errors = '.print_r($new_support_center->validation->errors(), true).'</pre>';
+			exit();
 			return redirect()
 				->route('support-center.create')
 				->withInput()
-				->withErrors($validation)
+				->withErrors($new_support_center->validation)
 				->withMessage('error_message', Lang::get('messages.form_contains_errors'));
 		}
-		
-		$account = Account::current();
-		$new_support_center = $account->supportCenters()->create($input);
 		
 		return redirect()
 			->route('support-center.index')
@@ -113,19 +115,16 @@ class SupportCenterController extends Controller {
 				->withMessage('error_message', Lang::get('messages.support_center_not_found'));
 		}
 		
-		// Validate input
-		$validation = SupportCenter::validateUpdate($input);
+		$support_center->update($input);
 		
-		if ($validation->fails()) {
-			// Redirect to create form with input values and errors
+		if ($support_center->hasErrors()) {
+			// Redirect to edit form with input values and errors
 			return redirect()
 				->route('support-center.edit', $id)
 				->withInput()
 				->withErrors($validation)
 				->withMessage('error_message', Lang::get('global.form_contains_errors'));
 		}
-		
-		$support_center->update($input);
 		
 		return redirect()
 			->route('support-center.index')
@@ -147,6 +146,14 @@ class SupportCenterController extends Controller {
 			return redirect()
 				->route('support-center.index')
 				->withMessage('error_message', Lang::get('messages.support_center_not_found'));
+		}
+		
+		$deleted = $support_center->delete();
+		
+		if (!$deleted) {
+			return redirect()
+				->route('support-center.index')
+				->withMessage('error_message', Lang::get('messages.support_center_delete_error'));
 		}
 		
 		return redirect()
