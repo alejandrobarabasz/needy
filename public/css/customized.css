@@ -16,6 +16,21 @@
 	/*border: solid 1px red;*/
 }
 
+.control-shadow {
+	-webkit-box-shadow: 1px 1px 3px #808080;
+	-moz-box-shadow: 1px 1px 3px #808080;
+	box-shadow: 1px 1px 3px #808080;
+}
+
+.list .alert-info {
+	margin: 10px auto;
+}
+
+.list .no-results {
+	padding: 15px;
+	color: #c9c9c9;
+	text-align: center;
+}
 
 .list .row {
 	border: solid 1px #F8F8F8;
@@ -41,14 +56,25 @@
 				margin-right:  0;
 			} 
 
-		.list .row .controls span {
+		.list .row .controls a {
+			border: solid 1px #c9c9c9;
 			margin-top: -15px;
-			background: #F8F8F8;
+			background-color: #F8F8F8;
+			background-repeat: no-repeat;
+			background-position: 5px 4px;
 			display: inline-block;
 			margin-left: 10px;
-			height: 32px;
-			width: 32px;
+			height: 34px;
+			width: 34px;
 		}
+
+			.list .row .controls a.edit {
+				background-image: url(/img/icons/edit.png);
+			}
+
+			.list .row .controls a.remove {
+				background-image: url(/img/icons/remove.png);
+			}
 
 		.list .row .controls span:hover {
 			cursor: pointer;
@@ -58,6 +84,14 @@
 		.list .row .controls span:active {
 			background: #efefef;
 		}
+
+	.list .row h2 {
+		display: inline-block;
+	}
+
+	.list .row h2:hover {
+		text-decoration: underline;
+	}
 
 	.list .row img {
 		margin: 10px auto;

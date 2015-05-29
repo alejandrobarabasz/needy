@@ -5,8 +5,10 @@ use NeedFinder\Account;
 use NeedFinder\SupportCenter;
 use Request, Lang;
 class SupportCenterController extends Controller {
+
 	// Maximum number of elements by page
-	public static $pageLimit = 20;
+	public static $pageLimit = 2;
+
 	/**
 	 * Display a listing of SupportCenters.
 	 *
@@ -14,11 +16,27 @@ class SupportCenterController extends Controller {
 	 */
 	public function index()
 	{
+		// leemos la cuenta del usuario
 		$current_account = Account::current();
-		$support_centers = $current_account->supportCenters()->paginate(static::$pageLimit);
-		
-		return view('support-center.index', compact('support_centers'));
+
+		// leemos los parámetros enviados
+		$q = Request::input("q") != null ? Request::input("q") : "";
+
+		// verificamos si el parámetro viene vacío.
+		$support_centers = (trim($q) == "") ?
+			$current_account->supportCenters()->paginate(static::$pageLimit) : 
+			$current_account->supportCenters()->where('name', 'like', '%'. $q .'%')->paginate(static::$pageLimit);
+
+
+		if (trim($q) != "")
+			$support_centers->appends(['q' => $q]);
+
+		if (Request::ajax())
+			return view('support-center._list', compact('support_centers', 'q'));
+
+		return view('support-center.index', compact('support_centers', 'q'));
 	}
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -28,6 +46,7 @@ class SupportCenterController extends Controller {
 	{
 		return view('support-center.create');
 	}
+
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -58,6 +77,7 @@ class SupportCenterController extends Controller {
 			->route('support-center.index')
 			->withMessage('success_message', Lang::get('messages.support_center_created_successfully'));
 	}
+
 	/**
 	 * Display the specified resource.
 	 *
@@ -71,6 +91,7 @@ class SupportCenterController extends Controller {
 		
 		return view('support-center.show', compact('support_center'));
 	}
+
 	/**
 	 * Show the form for editing the specified resource.
 	 *
@@ -81,6 +102,7 @@ class SupportCenterController extends Controller {
 	{
 		return view('support-center.edit');
 	}
+
 	/**
 	 * Update the specified resource in storage.
 	 *
@@ -118,6 +140,7 @@ class SupportCenterController extends Controller {
 			->route('support-center.index')
 			->withMessage('success_message', Lang::get('messages.support_center_updated_successfully'));
 	}
+	
 	/**
 	 * Remove the specified resource from storage.
 	 *

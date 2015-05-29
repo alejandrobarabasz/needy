@@ -69,6 +69,7 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
 	<script src="/vendor/jquery.businessHours/jquery.businessHours.js"></script>
+	<script src="/vendor/jquery.history/jquery.history.js"></script>
 	<script src="/js/app.js"></script>
 
 </body>
